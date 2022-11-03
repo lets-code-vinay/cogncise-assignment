@@ -257,6 +257,7 @@ const useStyle = makeStyles(() => ({
   ticket_container: {
     width: "100%",
     padding: "1% 2%",
+    height: "100vh",
   },
   table_container: {
     marginTop: "4%",

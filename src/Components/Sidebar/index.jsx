@@ -16,7 +16,6 @@ const useStyle = makeStyles(() => ({
   sidebar_container: {
     backgroundColor: "#363740",
     width: "18%",
-    height: "100vh",
   },
 
   sidebar_title: {
@@ -31,12 +30,10 @@ const useStyle = makeStyles(() => ({
   },
 
   listText: {
-    // color: "#DDE2FF",
     color: "#A4A6B3",
   },
 
   listIcon: {
-    // color: "#DDE2FF",
     color: "#A4A6B3 !important",
   },
 }));
