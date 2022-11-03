@@ -11,12 +11,14 @@ import {
   TableRow,
   TableCell,
   TableBody,
+  TablePagination,
   Chip,
 } from "@material-ui/core";
 import {
   FilterList as FilterListIcon,
   MoreVert as MoreVertIcon,
 } from "@material-ui/icons";
+
 import { APIs } from "../../Configs/Apis";
 import Spinner from "../Spinner";
 import Header from "../Header";
@@ -26,18 +28,20 @@ export default function Tickets() {
 
   const [tickets, setTicket] = React.useState([]);
   const [showLoader, setLoader] = React.useState(false);
-  const [chipColor, setChipColor] = React.useState("");
 
-  const getChipColor = () => {
-    // setChipColor(Math.random() * 100);
-  };
-  console.log(
-    getChipColor(),
-    "chipColor",
-    chipColor,
-    (Math.random() * 10).toFixed(0)
-  );
+  /**
+   * To get Date and Time
+   * @returns
+   */
+  function toDateTime() {
+    var time = new Date(1970, 0, 1);
+    time.setSeconds(Date.now() * Math.random());
+    return time;
+  }
 
+  /**
+   * Fetch ticket from Fake API
+   */
   const fetchTickets = () => {
     try {
       setLoader(true);
@@ -58,9 +62,9 @@ export default function Tickets() {
       });
     } catch (error) {
       console.error(error);
+      setLoader(false);
     }
   };
-  console.log(tickets);
 
   React.useEffect(() => {
     fetchTickets();
@@ -164,7 +168,9 @@ export default function Tickets() {
                           <Typography
                             className={`${classes.ticket_secondary} ticket_secondary`}
                           >
-                            {"updated 1 day ago"}
+                            {`updated ${(Math.random() * 10).toFixed(
+                              0
+                            )} day ago`}
                           </Typography>
                         </Box>
                       </Box>
@@ -181,21 +187,42 @@ export default function Tickets() {
                         <Typography
                           className={`${classes.ticket_secondary} ticket_secondary`}
                         >
-                          {"on 24/10/2022"}
+                          on{" "}
+                          {toDateTime().toLocaleString("default", {
+                            month: "short",
+                          }) +
+                            " " +
+                            toDateTime().getMonth() +
+                            ", " +
+                            2022}
                         </Typography>
                       </Box>
                     </TableCell>
 
                     <TableCell align="left">
                       <Box className={`${classes.ticket_matter} ticket_matter`}>
-                        <Typography>{"date"}</Typography>
+                        <Typography
+                          className={`${classes.ticket_primary} ticket_primary`}
+                        >
+                          {toDateTime().toLocaleString("default", {
+                            month: "short",
+                          }) +
+                            " " +
+                            toDateTime().getMonth() +
+                            ", " +
+                            2022}
+                        </Typography>
 
-                        <Typography>{"on 24/10/2022"}</Typography>
+                        <Typography
+                          className={`${classes.ticket_secondary} ticket_secondary`}
+                        >
+                          on {toDateTime().toLocaleTimeString()}
+                        </Typography>
                       </Box>
                     </TableCell>
 
                     <TableCell align="left">
-                      <Chip color="secondary" label="chip"></Chip>
+                      <Chip color="secondary" label={"Low"}></Chip>
                     </TableCell>
 
                     <TableCell align="left">
@@ -206,6 +233,20 @@ export default function Tickets() {
               )}
             </TableBody>
           </Table>
+          <TablePagination
+            rowsPerPageOptions={[
+              Math.round(tickets.length / 5),
+              Math.round(tickets.length / 2),
+              tickets.length,
+            ]}
+            component="div"
+            count={tickets.length}
+            // rowsPerPage={rowsPerPage}
+            rowsPerPage={tickets.length}
+            page={1}
+            // onPageChange={handleChangePage}
+            // onRowsPerPageChange={handleChangeRowsPerPage}
+          />
         </TableContainer>
       </Paper>
     </>
@@ -242,7 +283,7 @@ const useStyle = makeStyles(() => ({
     color: "#4B506D",
   },
   table_heading: {
-    color: "#9FA2B4",
+    color: "#9FA2B4 !important",
   },
   filters_text: {
     fontSize: "1rem",
