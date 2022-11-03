@@ -4,8 +4,8 @@ import Header from "../Header";
 
 const useStyle = makeStyles(() => ({
   dashboard_container: {
-    backgroundColor: "red",
-    width: "18%",
+    background: "#F7F8FC",
+    width: "100%",
     padding: "1% 2%",
   },
 }));
@@ -16,8 +16,8 @@ export default function Dashboard() {
   return (
     <>
       <Box className={`${classes.dashboard_container} dashboard_container`}>
-        <Header />
-        Dashboard
+        <Header title={"Overview"} />
+        {/* Dashboard */}
       </Box>
     </>
   );

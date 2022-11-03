@@ -3,7 +3,6 @@ import { makeStyles, Box } from "@material-ui/core";
 import Sidebar from "../../Components/Sidebar";
 import Tickets from "../../Components/Tickets";
 import Dashboard from "../../Components/Dashboard";
-import Header from "../../Components/Header";
 
 const Homepage = () => {
   const classes = useStyle();
@@ -21,7 +20,7 @@ const Homepage = () => {
       <Box className={`${classes.main_container} main_container`}>
         <Sidebar getRightPanel={getRightPanel} />
 
-        {panel == 0 && <Dashboard />}
+        {panel !== 1 && <Dashboard />}
         {panel == 1 && <Tickets />}
       </Box>
     </>
