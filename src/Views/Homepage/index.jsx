@@ -13,8 +13,6 @@ const Homepage = () => {
     setPanel(index);
   };
 
-  console.log("panel", panel);
-
   return (
     <>
       <Box className={`${classes.main_container} main_container`}>

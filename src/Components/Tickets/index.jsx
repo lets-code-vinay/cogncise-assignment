@@ -26,6 +26,17 @@ export default function Tickets() {
 
   const [tickets, setTicket] = React.useState([]);
   const [showLoader, setLoader] = React.useState(false);
+  const [chipColor, setChipColor] = React.useState("");
+
+  const getChipColor = () => {
+    // setChipColor(Math.random() * 100);
+  };
+  console.log(
+    getChipColor(),
+    "chipColor",
+    chipColor,
+    (Math.random() * 10).toFixed(0)
+  );
 
   const fetchTickets = () => {
     try {
@@ -78,24 +89,48 @@ export default function Tickets() {
                 fontSize="small"
                 className={`${classes.icon} icon`}
               />
-              <Typography variant="body">Sort</Typography>
+              <Typography className={`${classes.filters_text} filters_text`}>
+                Sort
+              </Typography>
             </Box>
             <Box className={`${classes.icons_container} icons_container`}>
               <FilterListIcon
                 fontSize="small"
                 className={`${classes.icon} icon`}
               />
-              <Typography variant="body">Filter</Typography>
+              <Typography className={`${classes.filters_text} filters_text`}>
+                Filter
+              </Typography>
             </Box>
           </Box>
           <Table className={classes.table} aria-label="simple table">
             <TableHead>
               <TableRow>
-                <TableCell>Ticket Details</TableCell>
-                <TableCell align="right">Customer Name</TableCell>
-                <TableCell align="right">Date</TableCell>
-                <TableCell align="right">Priority</TableCell>
-                <TableCell align="right"></TableCell>
+                <TableCell className={`${classes.table_heading} table_heading`}>
+                  Ticket Details
+                </TableCell>
+                <TableCell
+                  className={`${classes.table_heading} table_heading`}
+                  align="left"
+                >
+                  Customer Name
+                </TableCell>
+                <TableCell
+                  className={`${classes.table_heading} table_heading`}
+                  align="left"
+                >
+                  Date
+                </TableCell>
+                <TableCell
+                  className={`${classes.table_heading} table_heading`}
+                  align="left"
+                >
+                  Priority
+                </TableCell>
+                <TableCell
+                  className={`${classes.table_heading} table_heading`}
+                  align="left"
+                ></TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -120,25 +155,38 @@ export default function Tickets() {
                         <Box
                           className={`${classes.ticket_matter} ticket_matter`}
                         >
-                          <Typography>{email}</Typography>
+                          <Typography
+                            className={`${classes.ticket_primary} ticket_primary`}
+                          >
+                            {email}
+                          </Typography>
 
-                          <Typography>{"updated 1 day ago"}</Typography>
+                          <Typography
+                            className={`${classes.ticket_secondary} ticket_secondary`}
+                          >
+                            {"updated 1 day ago"}
+                          </Typography>
                         </Box>
                       </Box>
                     </TableCell>
 
-                    <TableCell align="right">
+                    <TableCell align="left">
                       <Box className={`${classes.ticket_matter} ticket_matter`}>
-                        <Typography>
-                          {" "}
+                        <Typography
+                          className={`${classes.ticket_primary} ticket_primary`}
+                        >
                           {first_name} {last_name}
                         </Typography>
 
-                        <Typography>{"on 24/10/2022"}</Typography>
+                        <Typography
+                          className={`${classes.ticket_secondary} ticket_secondary`}
+                        >
+                          {"on 24/10/2022"}
+                        </Typography>
                       </Box>
                     </TableCell>
 
-                    <TableCell align="right">
+                    <TableCell align="left">
                       <Box className={`${classes.ticket_matter} ticket_matter`}>
                         <Typography>{"date"}</Typography>
 
@@ -146,11 +194,11 @@ export default function Tickets() {
                       </Box>
                     </TableCell>
 
-                    <TableCell align="right">
+                    <TableCell align="left">
                       <Chip color="secondary" label="chip"></Chip>
                     </TableCell>
 
-                    <TableCell align="right">
+                    <TableCell align="left">
                       <MoreVertIcon />
                     </TableCell>
                   </TableRow>
@@ -182,11 +230,24 @@ const useStyle = makeStyles(() => ({
   },
   icons_container: {
     marginLeft: "5px",
+    width: "5%",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-around",
   },
   icon: {
-    width: "15px",
-    height: "15px",
+    width: "1.5rem",
+    height: "1.5rem",
     margin: "-3px 1px",
+    color: "#4B506D",
+  },
+  table_heading: {
+    color: "#9FA2B4",
+  },
+  filters_text: {
+    fontSize: "1rem",
+    fontWeight: "600",
+    color: "#4B506D",
   },
 
   ticket_detail_container: {
@@ -195,10 +256,20 @@ const useStyle = makeStyles(() => ({
   ticket_matter: {
     display: "flex",
     flexDirection: "column",
+    justifyContent: "center",
   },
 
   ticket_avatar: {
-    width: "10%",
+    width: "8%",
     borderRadius: "50%",
+    marginRight: "4%",
+  },
+
+  ticket_primary: {
+    fontWeight: "500",
+  },
+  ticket_secondary: {
+    color: "#C5C7CD",
+    fontSize: "0.8rem",
   },
 }));
