@@ -3,6 +3,7 @@ import { makeStyles, Box } from "@material-ui/core";
 import Sidebar from "../../Components/Sidebar";
 import Tickets from "../../Components/Tickets";
 import Dashboard from "../../Components/Dashboard";
+import Header from "../../Components/Header";
 
 const Homepage = () => {
   const classes = useStyle();

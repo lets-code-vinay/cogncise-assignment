@@ -19,6 +19,7 @@ import {
 } from "@material-ui/icons";
 import { APIs } from "../../Configs/Apis";
 import Spinner from "../Spinner";
+import Header from "../Header";
 
 export default function Tickets() {
   const classes = useStyle();
@@ -61,6 +62,7 @@ export default function Tickets() {
         elevation={3}
         className={`${classes.ticket_container} ticket_container`}
       >
+        <Header />
         <Box className={`${classes.header_container} header_container`}>
           <Typography variant="h6" className={`${classes.title} title`}>
             All tickets
@@ -162,6 +164,7 @@ export default function Tickets() {
 const useStyle = makeStyles(() => ({
   ticket_container: {
     width: "100%",
+    padding: "1% 2%",
   },
   header_container: {
     display: "flex",
