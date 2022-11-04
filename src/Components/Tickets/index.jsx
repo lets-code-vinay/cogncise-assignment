@@ -22,12 +22,15 @@ import {
 import { APIs } from "../../Configs/Apis";
 import Spinner from "../Spinner";
 import Header from "../Header";
+import User from "../User";
 
 export default function Tickets() {
   const classes = useStyle();
 
   const [tickets, setTicket] = React.useState([]);
   const [showLoader, setLoader] = React.useState(false);
+  const [isUserModalOpen, setUserModal] = React.useState(false);
+  const [userData, setUserData] = React.useState({});
 
   /**
    * To get Date and Time
@@ -66,13 +69,41 @@ export default function Tickets() {
     }
   };
 
+  /**
+   * Hook
+   */
   React.useEffect(() => {
     fetchTickets();
   }, []);
 
+  /**
+   * @description Opening user modal
+   *
+   * @param {Object} data
+   */
+  const handleUserModel = (data) => {
+    setUserModal(true);
+    setUserData(data);
+  };
+
+  /**
+   * @description Closing user modal
+   */
+  const handleUserModelClose = () => {
+    setUserModal(false);
+  };
+
   return (
     <>
       {showLoader && <Spinner />}
+
+      {isUserModalOpen && (
+        <User
+          userData={userData}
+          isOpen={isUserModalOpen}
+          handleClose={handleUserModelClose}
+        />
+      )}
       <Paper
         elevation={3}
         className={`${classes.ticket_container} ticket_container`}
@@ -139,13 +170,15 @@ export default function Tickets() {
             </TableHead>
             <TableBody>
               {tickets.map(
-                ({
-                  avatar = "",
-                  email = "",
-                  first_name = "",
-                  last_name = "",
-                }) => (
-                  <TableRow key={"row.name"}>
+                (
+                  { avatar = "", email = "", first_name = "", last_name = "" },
+                  index
+                ) => (
+                  <TableRow
+                    key={"row.name"}
+                    onClick={() => handleUserModel(tickets[index])}
+                    className={`${classes.ticket_user} ticket_user`}
+                  >
                     <TableCell component="th" scope="row">
                       <Box
                         className={`${classes.ticket_detail_container} ticket_detail_container`}
@@ -313,5 +346,8 @@ const useStyle = makeStyles(() => ({
   ticket_secondary: {
     color: "#C5C7CD",
     fontSize: "0.8rem",
+  },
+  ticket_user: {
+    cursor: "pointer",
   },
 }));
