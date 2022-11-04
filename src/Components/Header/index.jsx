@@ -5,9 +5,32 @@ import {
   Notifications as NotificationsIcon,
 } from "@material-ui/icons";
 import { Images } from "../../Configs/ImageContainer";
+import Logout from "../LogoutComponent";
 
 export default function Header({ title = "title", name = "" }) {
   const classes = useStyle();
+
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  /**
+   * @description: On click profile picture
+   *
+   * @param {Object} event
+   */
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  /**
+   * @description: On click outside of profile picture
+   */
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const open = Boolean(anchorEl);
+  const id = open ? "simple-popover" : undefined;
+
   return (
     <>
       <Box className={`${classes.main_header_container} main_header_container`}>
@@ -22,6 +45,15 @@ export default function Header({ title = "title", name = "" }) {
               src={Images.Avatar}
               alt={"avatar"}
               className={`${classes.avatar} avatar`}
+              aria-describedby={id}
+              onClick={handleClick}
+            />
+
+            <Logout
+              onClose={handleClose}
+              id={id}
+              open={open}
+              anchorEl={anchorEl}
             />
           </Box>
         </Box>

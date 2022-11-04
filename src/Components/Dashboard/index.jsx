@@ -11,12 +11,14 @@ import {
   ListItemSecondaryAction,
   Divider,
 } from "@material-ui/core";
-import Header from "../Header";
+
 import {
   analytics_status,
   overviewStatus,
   unsolved_ticket_status,
 } from "../../Configs/DashboardAnalytics/overviewStatus";
+
+import Header from "../Header";
 import { Images } from "../../Configs/ImageContainer";
 
 export default function Dashboard() {
@@ -124,7 +126,7 @@ export default function Dashboard() {
                   return (
                     <>
                       <ListItem
-                        key={label + index}
+                        key={`${label}-${index}`}
                         role={undefined}
                         dense
                         button

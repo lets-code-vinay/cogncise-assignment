@@ -175,7 +175,7 @@ export default function Tickets() {
                   index
                 ) => (
                   <TableRow
-                    key={"row.name"}
+                    key={`${first_name}-${index}`}
                     onClick={() => handleUserModel(tickets[index])}
                     className={`${classes.ticket_user} ticket_user`}
                   >

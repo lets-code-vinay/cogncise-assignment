@@ -162,7 +162,7 @@ const Login = () => {
               <Typography
                 className={`${classes.card_logo_text} card_logo_text`}
                 sx={{ fontSize: 14 }}
-                color="text.secondary"
+                color="secondary"
                 gutterBottom
               >
                 Dashboard Kit
@@ -208,9 +208,7 @@ const Login = () => {
                     </label>
                     <Typography
                       className={`${classes.login_label} login_label`}
-                      onClick={console.log("clicked")}
                     >
-                      {" "}
                       Forgot Password
                     </Typography>
                   </Box>

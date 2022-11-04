@@ -36,6 +36,10 @@ const useStyle = makeStyles(() => ({
   listIcon: {
     color: "#A4A6B3 !important",
   },
+
+  dashboard_text: {
+    color: "#A4A6B3",
+  },
 }));
 
 export default function Sidebar({ getRightPanel }) {
@@ -54,7 +58,9 @@ export default function Sidebar({ getRightPanel }) {
             alt={"Sidebar Logo"}
             className={`${classes.logo_icon} logo_icon`}
           />
-          <Typography style={{ color: "#A4A6B3" }}>Dashboard Kit</Typography>
+          <Typography className={`${classes.dashboard_text} dashboard_text`}>
+            Dashboard Kit
+          </Typography>
         </Box>
 
         <List>
@@ -62,7 +68,7 @@ export default function Sidebar({ getRightPanel }) {
             <ListItem
               className={classes.listItem}
               button
-              key={index}
+              key={`${index}-${listItem}`}
               onClick={handleClick(index)}
             >
               <ListItemIcon className={`${classes.listIcon} listIcon`}>

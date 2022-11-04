@@ -19,7 +19,7 @@ const Homepage = () => {
         <Sidebar getRightPanel={getRightPanel} />
 
         {panel !== 1 && <Dashboard />}
-        {panel == 1 && <Tickets />}
+        {panel === 1 && <Tickets />}
       </Box>
     </>
   );
