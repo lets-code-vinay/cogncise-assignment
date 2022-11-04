@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 import {
   makeStyles,
@@ -115,14 +116,13 @@ const useStyle = makeStyles(() => ({
 
 const Login = () => {
   const classes = useStyle();
+  const navigate = useNavigate();
 
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [showLoader, setLoader] = React.useState(false);
 
   const handleLogin = () => {
-    console.log("data", email, password);
-
     try {
       setLoader(true);
 
@@ -132,6 +132,8 @@ const Login = () => {
           if (status == 200) {
             localStorage.setItem("token", data?.token);
             setLoader(false);
+
+            navigate("/homepage");
           }
         })
         .catch((error) => console.error(error));
